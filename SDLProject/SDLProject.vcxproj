@@ -148,11 +148,13 @@
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\GameWindow.cpp" />
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\GUIManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GUIManager.h" />
     <ClInclude Include="src\Map.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\GameWindow.h" />

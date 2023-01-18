@@ -2,6 +2,7 @@
 #include "GameWindow.h"
 #include "Player.h"
 #include "Map.h"
+#include "GUIManager.h"
 
 #include <vector>
 #include <iostream>
@@ -9,6 +10,8 @@
 
 #include <array>
 #include <cmath>
+
+
 
 Application::Application()
 {
@@ -27,6 +30,8 @@ Application::~Application()
 void Application::Run()
 {
 	GameWindow window(1280, 720, "Game Window");
+	GUIManager manager(window.getRenderer());
+	
 
 	bool isRunning = true;
 	SDL_Event e;
@@ -36,6 +41,16 @@ void Application::Run()
 
 	SDL_Texture* GrassTexture = window.LoadTexture("gfx/images/Grass.png");
 	SDL_Texture* SkyTexture = window.LoadTexture("gfx/images/Sky.png");
+
+	
+
+	SDL_Rect r2;
+	r2.x = 1280/2 - 300;
+	r2.y = 100;
+	r2.w = 600;
+	r2.h = 100;
+	manager.addText("fonts/perrygothic/PERRYGOT.ttf", 32, "MONTU WAR GOD",r2, {255,255,0});
+
 
 	std::vector<SDL_Texture*> TextureList;
 
@@ -88,64 +103,103 @@ void Application::Run()
 
 	Player ghost(changeX, changeY, 59, 30, velo,5,1,144, texture2);
 
-	
+	bool p_Menu = true; //how we swap between menu and game
 	
 
 
-    while (isRunning)
+	while (isRunning)
 	{
-		
-		float startFrame = SDL_GetTicks();
-
-		
-
-		while (SDL_PollEvent(&e))
+		//will add a system to load in previous saves,levels, etc...
+		if (!p_Menu)
 		{
-			
-			switch(e.type)
+			float startFrame = SDL_GetTicks();
+
+
+
+			while (SDL_PollEvent(&e))
 			{
-			case SDL_QUIT:
-				isRunning = false;
-				break;
-			case SDL_MOUSEMOTION:
-				ghost.p_MouseMotion = true;
-				break;
-				
-			case SDL_MOUSEBUTTONDOWN:
-				ghost.p_MouseMotion = false;
-				break;
+
+				switch (e.type)
+				{
+				case SDL_QUIT:
+					isRunning = false;
+					break;
+				case SDL_MOUSEMOTION:
+					ghost.p_MouseMotion = true;
+					break;
+
+				case SDL_MOUSEBUTTONDOWN:
+					ghost.p_MouseMotion = false;
+
+					int x, y;
+					SDL_GetMouseState(&x, &y);
+
+					if (x == 0 && y == 0)
+						p_Menu = true;
+
+					break;
+					
+				}
+
+
+
+
+
 			}
 
-			
+			window.clear();
+
+			/*for (Entity& i : Entities)
+			{
+				window.render(i);
+			}*/
 
 
 
+
+			map.DrawMap(window.getRenderer());
+			window.render(ghost);
+			ghost.UpdateSprite();
+			manager.update();
+
+
+			window.display();
+
+
+
+			float EndFrame = SDL_GetTicks() - startFrame;
+			float FPS = 1000 / EndFrame;
+
+			//std::cout << "FPS: " << FPS << std::endl;
 		}
+		else {
+			while (SDL_PollEvent(&e))
+			{
 
-		window.clear();
+				switch (e.type)
+				{
+				case SDL_QUIT:
+					isRunning = false;
+					break;
+				case SDL_MOUSEBUTTONDOWN:
+					int x, y;
+					SDL_GetMouseState(&x, &y);
 
-		/*for (Entity& i : Entities)
-		{
-			window.render(i);
-		}*/
+					std::cout << x << " " << y << std::endl;
 
-
-		
-		
-		map.DrawMap(window.getRenderer());
-		window.render(ghost);
-		ghost.UpdateSprite();
-
-
-		window.display();
-
+					if (x == 0 && y == 0)
+						p_Menu = false;
+					break;
+				}
 
 
-		float EndFrame = SDL_GetTicks() - startFrame;
-		float FPS = 1000 / EndFrame;
-
-		//std::cout << "FPS: " << FPS << std::endl;
+				manager.update();
+				window.display();
+			}
+		}
 	}
+		
+		
 
 
 		
