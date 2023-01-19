@@ -14,13 +14,18 @@ public:
 
 	void update();
 	void addText(const char* fontFile, int pSize, const char* text, SDL_Rect rect, SDL_Color color);
-	virtual void addButton() {}; //for Menu, soon to be added
+    void addButton(const char* fontFile, const char* text, int pSize, SDL_Color color, int x, int y, int width, int height); 
 
-
+	bool p_MouseButtonDown;
 
 private:
 	SDL_Renderer* m_Renderer;
-	std::vector<SDL_Texture*> m_TextureLists; //will find a more efficient way later than to use vectors
+	std::vector<SDL_Texture*> m_TextureLists; //will find a more efficient way later than to use vectors]
+	std::vector<SDL_Texture*> m_ButtonLists;
+
 	std::vector<SDL_Rect> m_RectsLists;
+	std::vector<SDL_Rect> m_Rectangles;
+
+	
 
 };

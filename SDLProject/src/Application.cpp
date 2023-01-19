@@ -27,6 +27,8 @@ Application::~Application()
 	SDL_Quit();
 }
 
+
+
 void Application::Run()
 {
 	GameWindow window(1280, 720, "Game Window");
@@ -49,7 +51,10 @@ void Application::Run()
 	r2.y = 100;
 	r2.w = 600;
 	r2.h = 100;
+
+
 	manager.addText("fonts/perrygothic/PERRYGOT.ttf", 32, "MONTU WAR GOD",r2, {255,255,0});
+	manager.addButton("fonts/perrygothic/PERRYGOT.ttf", "BUTTON", 32, { 255,0,0 }, 700, 400, 400, 100);
 
 
 	std::vector<SDL_Texture*> TextureList;
@@ -134,7 +139,7 @@ void Application::Run()
 					int x, y;
 					SDL_GetMouseState(&x, &y);
 
-					if (x == 0 && y == 0)
+					if (x < 100)
 						p_Menu = true;
 
 					break;
@@ -161,9 +166,9 @@ void Application::Run()
 			window.render(ghost);
 			ghost.UpdateSprite();
 			manager.update();
-
-
 			window.display();
+
+			
 
 
 
@@ -187,15 +192,20 @@ void Application::Run()
 
 					std::cout << x << " " << y << std::endl;
 
-					if (x == 0 && y == 0)
-						p_Menu = false;
+					manager.p_MouseButtonDown = true;
 					break;
+
+				case SDL_MOUSEBUTTONUP:
+					manager.p_MouseButtonDown = false;
+				
 				}
 
 
 				manager.update();
 				window.display();
 			}
+
+			
 		}
 	}
 		
