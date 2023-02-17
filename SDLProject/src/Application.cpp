@@ -108,7 +108,7 @@ void Application::Run()
 
 	Player ghost(changeX, changeY, 59, 30, velo,5,1,144, texture2);
 
-	bool p_Menu = true; //how we swap between menu and game
+	bool p_Menu = false; //how we swap between menu and game
 	
 
 

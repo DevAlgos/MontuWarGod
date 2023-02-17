@@ -78,13 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDLttf\include;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2Image\include;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2\include;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDLttf\lib\x64;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2Image\lib\x64;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\SDLttf\include;$(SolutionDir)Libs\SDL2Image\include;$(SolutionDir)Libs\SDL2\include;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\SDLttf\lib\x64;$(SolutionDir)Libs\SDL2Image\lib\x64;$(SolutionDir)Libs\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDLttf\include;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2Image\include;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDLttf\lib\x64;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2Image\lib\x64;C:\Users\khali\OneDrive\Desktop\dev\SDLProject\Libs\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\SDLttf\include;$(SolutionDir)Libs\SDL2Image\include;$(SolutionDir)Libs\SDL2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\SDLttf\lib\x64;$(SolutionDir)Libs\SDL2Image\lib\x64;$(SolutionDir)Libs\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
